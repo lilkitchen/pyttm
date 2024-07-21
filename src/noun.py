@@ -73,7 +73,11 @@ def incline_singular(w, decl, lemma, size):
 	elif decl == 2:
 		if gender == "mas":
 			if end == 'ь':
-				pass
+				w.forms[fm.SG | fm.GEN | size] = lemma[:-1] + 'я'
+				w.forms[fm.SG | fm.DAT | size] = lemma[:-1] + 'ю'
+				w.forms[fm.SG | fm.ACC | size] = lemma
+				w.forms[fm.SG | fm.INS | size] = lemma[:-1] + 'ем'
+				w.forms[fm.SG | fm.ADP | size] = lemma[:-1] + 'е'
 
 			else:
 				w.forms[fm.SG | fm.GEN | size] = lemma + 'а'

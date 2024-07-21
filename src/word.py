@@ -102,6 +102,17 @@ def load_words(path, func, type):
 			return err
 
 		if "ex" in w.specs:
-			pass
+			ex = w.specs["ex"]
+			if len(ex) % 2:
+				return "Wrong exceptions syntax: " + str(ex)
+
+			for i in range(0, len(ex), 2):
+				f = form.read(ex[i])
+				if f is None:
+					return "Wrong exception form: " + ex[i] + " in " + str(ex)
+
+				w.forms[f] = ex[i + 1]
+
+			del w.specs["ex"]
 
 		words.append(w)

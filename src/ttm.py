@@ -5,4 +5,6 @@
 import word
 
 def init():
-	word.init()
+	err = word.init()
+	if err:
+		return err

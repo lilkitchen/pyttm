@@ -6,7 +6,9 @@ import ttm
 # import words
 
 def main():
-	ttm.init()
+	err = ttm.init()
+	if err:
+		print(err)
 
 if __name__ == "__main__":
 	main()

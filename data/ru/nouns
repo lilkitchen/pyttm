@@ -105,6 +105,12 @@
 		(@ sg dat norm) "матери"
 		(@ sg ins norm) "матерью"
 		(@ sg adp norm) "матери"
+		(@ pl nom norm) "матери"
+		(@ pl gen norm) "матерей"
+		(@ pl dat norm) "матерям"
+		(@ pl acc norm) "матерей"
+		(@ pl ins norm) "матерями"
+		(@ pl adp norm) "матерях"
 	)
 )
 (действие 3293 "action")
