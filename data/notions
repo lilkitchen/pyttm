@@ -1,0 +1,336 @@
+#
+# notions
+#
+
+("_user"
+	is: "human"
+)
+("_ttm"
+	is: "human"
+)
+("is")
+("src")
+("has")
+("char")
+("char+")
+("char-")
+("opp")
+("madeof")
+
+("I"
+	--pointer
+)
+("he"
+	--pointer
+)
+("she"
+	--pointer
+)
+("they"
+	--pointer
+)
+("we"
+	--pointer
+)
+("you"
+	--pointer
+)
+("you (pl)"
+	--pointer
+)
+("all"
+	--pointer
+)
+("this"
+	--pointer
+)
+("that"
+	--pointer
+)
+("what"
+	--pointer
+)
+("who"
+	--pointer
+)
+
+("good"
+	opp: "bad"
+)
+("bad"
+	opp: "good"
+)
+
+("time")
+("deal")
+("life")
+("period")
+("year"
+	is: "period"
+)
+("mounth"
+	is: "period"
+)
+("week"
+	is: "period"
+)
+("day (period)"
+	is: "period"
+)
+("hour"
+	is: "period"
+)
+("minute"
+	is: "period"
+)
+("second"
+	is: "period"
+)
+("daytime"
+	opp: "night"
+)
+("night")
+
+("organ (body)")
+("body")
+("bodypart"
+	is: "organ (body)"
+)
+("arm"
+	is: "bodypart"
+)
+("hand"
+	is: "bodypart"
+)
+("face"
+	is: "bodypart"
+)
+("mouth"
+	is: "bodypart"
+)
+("eye"
+	is: "bodypart"
+)
+
+("time (bout)")
+("work")
+
+("human"
+	is: "mammal"
+)
+
+("male")
+("female")
+("spouse"
+	is: "human"
+)
+("wife"
+	is: "spouse"
+	char: "female"
+)
+("husband"
+	is: "spouse"
+	char: "male"
+)
+
+("place")
+("none")
+
+("living thing")
+
+("animal"
+	is: "living thing"
+)
+("mammal"
+	is: "animal"
+	has: ("meat" "mouth" "face" "eye")
+)
+("cat"
+	is: "mammal"
+)
+("dog"
+	is: "mammal"
+)
+("wolf"
+	is: "mammal"
+	char: ("grey")
+)
+("bear"
+	is: "mammal"
+	char: ("brown" "white")
+)
+
+("interesting")
+
+("paper"
+	madeof: "wood"
+)
+("book"
+	has: "word"
+	char+: "interesting"
+)
+("book (paper)"
+	has: ("book" "paper")
+)
+
+("sensation")
+("taste"
+	is: "sensation"
+)
+("tasty"
+	char: "good"
+)
+
+("sweet"
+	is: "taste"
+)
+("bitter"
+	is: "taste"
+)
+
+("sugar"
+	char: ("sweet" "white" "brown")
+)
+("candy"
+	is: "food"
+	char: "sweet"
+	madeof: "sugar"
+)
+
+("edible")
+("food"
+	char: "edible"
+	char-: "bitter"
+)
+("fruit"
+	is: "food"
+	has: "juice"
+	char+: "sweet"
+)
+("flour"
+	char: "edible"
+)
+("pastry"
+	is: "food"
+	madeof: "flour"
+)
+
+("wet")
+("liquid"
+	char: "wet"
+)
+("water"
+	is: "liquid"
+	char: "edible"
+)
+("juice"
+	is: "liquid"
+	partof: "fruit"
+)
+
+("meat"
+	is: "food"
+	src: "animal"
+)
+
+("chicken"
+	is: "animal"
+)
+
+("chicken (food)"
+	is: "meat"
+	src: "chicken"
+)
+("egg"
+	is: "food"
+	src: "chicken"
+)
+("bread"
+	is: "pastry"
+	char+: "soft"
+)
+("orange (fruit)"
+	is: "fruit"
+	char: ("sweet" "orange (color)")
+)
+("apple"
+	is: "fruit"
+)
+("vegetable"
+	is: food
+)
+("potato"
+	is: "vegetable"
+)
+
+("soft"
+	opp: "hard"
+)
+("hard")
+
+("material")
+
+("wood"
+	is: "material"
+)
+("stone (material)"
+	is: "material"
+)
+
+("plant"
+	is: "living thing"
+)
+("leaf"
+	char: "green"
+)
+("tree"
+	is: "plant"
+	has: ("leaf" "wood")
+)
+("bush"
+	is: "plant"
+	has: "leaf"
+)
+("grass"
+	is: "plant"
+	char: "green"
+)
+
+("color")
+
+("green"
+	is: "color"
+)
+("blue"
+	is: "color"
+)
+("light blue"
+	is: "color"
+)
+("grey"
+	is: "color"
+)
+("red"
+	is: "color"
+)
+("yellow"
+	is: "color"
+)
+("orange (color)"
+	is: "color"
+)
+("pink"
+	is: "color"
+)
+("brown"
+	is: "color"
+)
+("black"
+	is: "color"
+	opp: "white"
+)
+("white"
+	is: "color"
+)
+
+("word")
