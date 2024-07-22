@@ -2,7 +2,9 @@
 # word.py
 #
 
+import adjective
 import noun
+import verb
 
 import form
 import sexp
@@ -43,7 +45,7 @@ class Word:
 		self.errs = {}
 		self.notions = []
 
-	def print(self):
+	def display(self):
 		print(TYPE_LABELS[self.type] + ": " + self.lemma)
 
 		for k in self.specs:
@@ -59,8 +61,37 @@ def init():
 	if err:
 		return err
 
-	for w in words:
-		w.print()
+	err = load_words("../data/ru/adjectives", adjective.load, ADJT)
+	if err:
+		return err
+
+	err = load_words("../data/ru/adverbs", load_dummy, ADVB)
+	if err:
+		return err
+
+	err = load_words("../data/ru/particles", load_dummy, PART)
+	if err:
+		return err
+
+	err = load_words("../data/ru/prepositions", load_dummy, PREP)
+	if err:
+		return err
+
+	err = load_words("../data/ru/verbs", verb.load, VERB)
+	if err:
+		return err
+
+def load_dummy(w):
+	pass
+
+def display(s=None):
+	if s is None:
+		for w in words:
+			w.display()
+
+	else:
+		# TODO: display all words matching s
+		pass
 
 def load_words(path, func, type):
 	sx, err = sexp.load_file(path)

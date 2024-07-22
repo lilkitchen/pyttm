@@ -48,7 +48,8 @@ def load(w):
 
 	if "plural-only" not in w.specs:
 		incline_singular(w, decl, w.lemma, fm.NORM)
-		incline_plural(w, decl, w.lemma, fm.NORM)
+		if "singular-only" not in w.specs:
+			incline_plural(w, decl, w.lemma, fm.NORM)
 
 def incline_singular(w, decl, lemma, size):
 	gender, end, final = incline_vars_get(w, lemma)
@@ -123,7 +124,12 @@ def incline_plural(w, decl, lemma, size):
 	elif decl == 2:
 		if gender == "mas":
 			if end == 'ь':
-				pass
+				w.forms[fm.PL | fm.NOM | size] = lemma[:-1] + 'и'
+				w.forms[fm.PL | fm.GEN | size] = lemma[:-1] + 'ей'
+				w.forms[fm.PL | fm.DAT | size] = lemma[:-1] + 'ям'
+				w.forms[fm.PL | fm.ACC | size] = lemma[:-1] + 'и'
+				w.forms[fm.PL | fm.INS | size] = lemma[:-1] + 'ями'
+				w.forms[fm.PL | fm.ADP | size] = lemma[:-1] + 'ях'
 
 			else:
 				w.forms[fm.PL | fm.NOM | size] = lemma + 'ы'

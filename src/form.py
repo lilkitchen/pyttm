@@ -11,6 +11,8 @@ MAS = 0x4
 FEM = 0x8
 COM = 0x10
 
+GENDER = MAS | FEM | COM
+
 NOM = 0x20
 GEN = 0x40
 DAT = 0x80
@@ -18,15 +20,21 @@ ACC = 0x100
 INS = 0x200
 ADP = 0x400
 
+CASE = NOM | GEN | DAT | ACC | INS | ADP
+
 PRES = 0x800
 PAST = 0x1000
-FUT = 0x2000
+FUTR = 0x2000
+
+TENSE = PRES | PAST | FUTR
 
 INF = 0x4000
 IMP = 0x8000
 FST = 0x10000
 SEC = 0x20000
 TRD = 0x40000
+
+PERSON = INF | IMP | FST | SEC | TRD
 
 POS = 0x80000
 CMP = 0x100000
@@ -44,6 +52,8 @@ PASS = 0x8000000
 NORM = 0x10000000
 DIM = 0x20000000
 AUG = 0x40000000
+
+SIZE = NORM | DIM | AUG
 
 FULL = 0x80000000
 SHRT = 0x100000000
@@ -74,8 +84,8 @@ LABELS = {
 	"pres": PRES,
 	"present": PRES,
 	"past": PAST,
-	"fut": FUT,
-	"future": FUT,
+	"fut": FUTR,
+	"future": FUTR,
 	"inf": INF,
 	"infinitive": INF,
 	"imp": IMP,

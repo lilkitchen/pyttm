@@ -26,16 +26,10 @@
 ("she"
 	--pointer
 )
-("they"
-	--pointer
-)
-("we"
-	--pointer
-)
 ("you"
 	--pointer
 )
-("you (pl)"
+("you (polite)"
 	--pointer
 )
 ("all"

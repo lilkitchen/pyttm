@@ -59,11 +59,21 @@
 (известный 2811 ("known" "famous"))
 (военный 2787 "military")
 (важный 2770 "important")
-(великий 2763 "great")
-(простой 2753 "simple")
+(великий 2763 "great"
+	decl: "mixed"
+)
+(простой 2753 "simple"
+	ex: (
+		(@ sg mas ins pos norm full) "простым"
+	)
+)
 (огромный 2721 "huge")
-(политический 2696 "political")
-(московский 2573 "moscow (adj)")
+(политический 2696 "political"
+	decl: "mixed"
+)
+(московский 2573 "moscow (adj)"
+	decl: "mixed"
+)
 (готовый 2485 ("ready" "done"))
 (данный 2411 "current")
 (красный 2405 "red")
@@ -80,28 +90,40 @@
 (экономический 2106 "economical")
 (правый 2104 "right")
 (федеральный 2089 "federal")
-(близкий 2068 "close (near)")
+(близкий 2068 "close (near)"
+	decl: "mixed"
+)
 (похожий 2065 "similar")
 (различный 2055 "different")
 (необходимый 2037 "necessary")
 (единственный 2022 "the only one")
-(лёгкий 2021 ("light (weight)" "easy"))
-(человеческий 1993 "human (adj)")
+(лёгкий 2021 ("light (weight)" "easy")
+	decl: "mixed"
+)
+(человеческий 1993 "human (adj)"
+	decl: "mixed"
+)
 (сей 1986 "this")
 (международный 1982 "international")
 (дорогой 1977 ("expensive" "precious" "dear"))
 (небольшой 1966 "small")
 (местный 1933 "local")
 (бывший 1915 "former")
-(американский 1865 "american")
-(широкий 1839 "wide")
+(американский 1865 "american"
+	decl: "mixed"
+)
+(широкий 1839 "wide"
+	decl: "mixed"
+)
 (мировой 1823 "worldwide")
 (тяжёлый 1803 ("heavy" "hard (difficult)"))
 (возможный 1791 "possible")
 (отдельный 1775 "separate")
 (средний 1773 "middle")
 (красивый 1772 "beautiful")
-(короткий 1756 "short")
+(короткий 1756 "short"
+	decl: "mixed"
+)
 (серьёзный 1730 "serious")
 (интересный 1719 "interesting")
 (добрый 1711 "kind (nice)")
