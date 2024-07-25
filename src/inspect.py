@@ -58,22 +58,57 @@ def apply(cmd):
 			print("Total:", to_mb(total))
 
 		elif cmd[i] == "find":
-			# TODO: if there is no [literal] do read/eval loop
-			print("Not implemented yet")
 			i += 1
+			if i < len(cmd):
+				literal_get(cmd[i])
+
+			else:
+				while True:
+					try:
+						s = input()
+						if not s:
+							continue
+
+					except EOFError:
+						break
+
+					literal_get(s)
 
 		elif cmd[i] == "word":
-			# TODO: if there is no [word] do read/eval loop
-			print("Not implemented yet")
 			i += 1
+			if i < len(cmd):
+				word_get(cmd[i])
+
+			else:
+				while True:
+					try:
+						s = input()
+						if not s:
+							continue
+
+					except EOFError:
+						break
+
+					word_get(s)
 
 		elif cmd[i] == "words":
-			word.display()
+			for w in word.words:
+				w.display()
 
 		elif cmd[i] == 'q' or cmd[i] == "quit" or cmd[i] == "exit":
 			return True
 
 		i += 1
+
+def literal_get(s):
+	if s in word.forms:
+		for w in word.forms[s]:
+			w.display()
+
+def word_get(s):
+	for w in word.words:
+		if s == w.lemma:
+			w.display()
 
 def to_mb(num):
 	num = num / 1024 / 1024

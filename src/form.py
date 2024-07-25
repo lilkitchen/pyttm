@@ -7,6 +7,8 @@ import sexp
 SG = 0x1
 PL = 0x2
 
+NUMBER = SG | PL
+
 MAS = 0x4
 FEM = 0x8
 COM = 0x10
@@ -40,23 +42,29 @@ POS = 0x80000
 CMP = 0x100000
 SUP = 0x200000
 
+COMPARISON = POS | CMP | SUP
+
 IMPF = 0x400000
 PF = 0x800000
 
-NRFX = 0x1000000
-RFX = 0x2000000
+ASPECT = IMPF | PF
 
 ACT = 0x4000000
-PASS = 0x8000000
+PAS = 0x8000000
+RFX = 0x2000000
 
-NORM = 0x10000000
+VOICE = ACT | PAS | RFX
+
+NRM = 0x10000000
 DIM = 0x20000000
 AUG = 0x40000000
 
-SIZE = NORM | DIM | AUG
+SIZE = NRM | DIM | AUG
 
 FULL = 0x80000000
 SHRT = 0x100000000
+
+LENGTH = FULL | SHRT
 
 LABELS = {
 	"sg": SG,
@@ -84,7 +92,7 @@ LABELS = {
 	"pres": PRES,
 	"present": PRES,
 	"past": PAST,
-	"fut": FUTR,
+	"futr": FUTR,
 	"future": FUTR,
 	"inf": INF,
 	"infinitive": INF,
@@ -109,16 +117,16 @@ LABELS = {
 	"imperfect": IMPF,
 	"pf": PF,
 	"perfect": PF,
-	"nrfx": NRFX,
-	"nonreflexive": NRFX,
 	"rfx": RFX,
 	"reflexive": RFX,
 	"act": ACT,
 	"active": ACT,
-	"pass": PASS,
-	"passive": PASS,
-	"norm": NORM,
-	"normal": NORM,
+	"pas": PAS,
+	"pass": PAS,
+	"passive": PAS,
+	"nrm": NRM,
+	"norm": NRM,
+	"normal": NRM,
 	"dim": DIM,
 	"diminutive": DIM,
 	"aug": AUG,

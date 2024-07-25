@@ -34,6 +34,7 @@ TYPE_LABELS = {
 }
 
 words = []
+forms = {}
 
 class Word:
 	def __init__(self, type):
@@ -49,7 +50,7 @@ class Word:
 		print(TYPE_LABELS[self.type] + ": " + self.lemma)
 
 		for k in self.specs:
-			print('\t', k, "=", self.specs[k])
+			print('\t', k, ": ", self.specs[k], sep='')
 
 		for k in self.forms:
 			print('\t', end='')
@@ -81,17 +82,16 @@ def init():
 	if err:
 		return err
 
+	for w in words:
+		for k in w.forms:
+			f = w.forms[k]
+			if f not in forms:
+				forms[f] = set()
+
+			forms[f].add(w)
+
 def load_dummy(w):
 	pass
-
-def display(s=None):
-	if s is None:
-		for w in words:
-			w.display()
-
-	else:
-		# TODO: display all words matching s
-		pass
 
 def load_words(path, func, type):
 	sx, err = sexp.load_file(path)
@@ -132,18 +132,27 @@ def load_words(path, func, type):
 		if err:
 			return err
 
-		if "ex" in w.specs:
-			ex = w.specs["ex"]
-			if len(ex) % 2:
-				return "Wrong exceptions syntax: " + str(ex)
+		err = apply_forms(w, "ex", w.forms, "Wrong exception syntax")
+		if err:
+			return err
 
-			for i in range(0, len(ex), 2):
-				f = form.read(ex[i])
-				if f is None:
-					return "Wrong exception form: " + ex[i] + " in " + str(ex)
-
-				w.forms[f] = ex[i + 1]
-
-			del w.specs["ex"]
+		err = apply_forms(w, "er", w.errs, "Wrong error-case syntax")
+		if err:
+			return err
 
 		words.append(w)
+
+def apply_forms(w, name, dt, msg):
+	if name in w.specs:
+		spec = w.specs[name]
+		if len(spec) % 2:
+			return msg + ": " + str(spec)
+
+		for i in range(0, len(spec), 2):
+			f = form.read(spec[i])
+			if f is None:
+				return "Wrong form: " + spec[i] + " in " + str(spec)
+
+			dt[f] = spec[i + 1]
+
+		del w.specs[name]

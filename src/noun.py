@@ -38,18 +38,43 @@ def load(w):
 			return "Wrong noun declension: " + w.specs["decl"] + " in " + w.lemma
 
 	if "no-decl" in w.specs:
-		w.forms[fm.SG | fm.NOM | fm.NORM] = w.lemma
-		w.forms[fm.SG | fm.GEN | fm.NORM] = w.lemma
-		w.forms[fm.SG | fm.DAT | fm.NORM] = w.lemma
-		w.forms[fm.SG | fm.ACC | fm.NORM] = w.lemma
-		w.forms[fm.SG | fm.INS | fm.NORM] = w.lemma
-		w.forms[fm.SG | fm.ADP | fm.NORM] = w.lemma
+		w.forms[fm.SG | fm.NOM | fm.NRM] = w.lemma
+		w.forms[fm.SG | fm.GEN | fm.NRM] = w.lemma
+		w.forms[fm.SG | fm.DAT | fm.NRM] = w.lemma
+		w.forms[fm.SG | fm.ACC | fm.NRM] = w.lemma
+		w.forms[fm.SG | fm.INS | fm.NRM] = w.lemma
+		w.forms[fm.SG | fm.ADP | fm.NRM] = w.lemma
 		return
 
 	if "plural-only" not in w.specs:
-		incline_singular(w, decl, w.lemma, fm.NORM)
+		incline_singular(w, decl, w.lemma, fm.NRM)
 		if "singular-only" not in w.specs:
-			incline_plural(w, decl, w.lemma, fm.NORM)
+			incline_plural(w, decl, w.lemma, fm.NRM)
+
+	if "sg" in w.specs:
+		spec = w.specs["sg"]
+		if len(spec) != 5:
+			return "Wrong sg form count: " + spec
+
+		w.forms[fm.SG | fm.GEN | fm.NRM] = spec[0]
+		w.forms[fm.SG | fm.DAT | fm.NRM] = spec[1]
+		w.forms[fm.SG | fm.ACC | fm.NRM] = spec[2]
+		w.forms[fm.SG | fm.INS | fm.NRM] = spec[3]
+		w.forms[fm.SG | fm.ADP | fm.NRM] = spec[4]
+		del w.specs["sg"]
+
+	if "pl" in w.specs:
+		spec = w.specs["pl"]
+		if len(spec) != 6:
+			return "Wrong sg form count: " + spec
+
+		w.forms[fm.PL | fm.NOM | fm.NRM] = spec[0]
+		w.forms[fm.PL | fm.GEN | fm.NRM] = spec[1]
+		w.forms[fm.PL | fm.DAT | fm.NRM] = spec[2]
+		w.forms[fm.PL | fm.ACC | fm.NRM] = spec[3]
+		w.forms[fm.PL | fm.INS | fm.NRM] = spec[4]
+		w.forms[fm.PL | fm.ADP | fm.NRM] = spec[5]
+		del w.specs["pl"]
 
 def incline_singular(w, decl, lemma, size):
 	gender, end, final = incline_vars_get(w, lemma)
@@ -101,6 +126,9 @@ def incline_singular(w, decl, lemma, size):
 		w.forms[fm.SG | fm.INS | size] = lemma + 'ю'
 		w.forms[fm.SG | fm.ADP | size] = lemma[:-1] + 'и'
 
+	if "animated" in w.specs and w.specs["gender"] == "mas":
+		w.forms[fm.SG | fm.ACC | fm.NRM] = w.forms[fm.SG | fm.GEN | fm.NRM]
+
 def incline_plural(w, decl, lemma, size):
 	gender, end, final = incline_vars_get(w, lemma)
 
@@ -108,10 +136,10 @@ def incline_plural(w, decl, lemma, size):
 		if end == 'а':
 			w.forms[fm.PL | fm.NOM | size] = lemma[:-1] + final[0]
 			w.forms[fm.PL | fm.GEN | size] = lemma[:-1]
-			w.forms[fm.PL | fm.DAT | size] = lemma[:-1] + 'е'
-			w.forms[fm.PL | fm.ACC | size] = lemma[:-1] + 'у'
-			w.forms[fm.PL | fm.INS | size] = lemma[:-1] + 'ой'
-			w.forms[fm.PL | fm.ADP | size] = lemma[:-1] + 'е'
+			w.forms[fm.PL | fm.DAT | size] = lemma[:-1] + 'ам'
+			w.forms[fm.PL | fm.ACC | size] = lemma[:-1] + final[0]
+			w.forms[fm.PL | fm.INS | size] = lemma[:-1] + 'ами'
+			w.forms[fm.PL | fm.ADP | size] = lemma[:-1] + 'ах'
 
 		elif end == 'я':
 			w.forms[fm.PL | fm.NOM | size] = lemma[:-1] + 'и'
@@ -132,10 +160,10 @@ def incline_plural(w, decl, lemma, size):
 				w.forms[fm.PL | fm.ADP | size] = lemma[:-1] + 'ях'
 
 			else:
-				w.forms[fm.PL | fm.NOM | size] = lemma + 'ы'
-				w.forms[fm.PL | fm.GEN | size] = lemma + 'ов'
+				w.forms[fm.PL | fm.NOM | size] = lemma + final[7]
+				w.forms[fm.PL | fm.GEN | size] = lemma + final[8]
 				w.forms[fm.PL | fm.DAT | size] = lemma + 'ам'
-				w.forms[fm.PL | fm.ACC | size] = lemma + 'ы'
+				w.forms[fm.PL | fm.ACC | size] = lemma + final[7]
 				w.forms[fm.PL | fm.INS | size] = lemma + 'ами'
 				w.forms[fm.PL | fm.ADP | size] = lemma + 'ах'
 
@@ -155,9 +183,13 @@ def incline_plural(w, decl, lemma, size):
 		w.forms[fm.PL | fm.INS | size] = lemma[:-1] + final[6] + 'ми'
 		w.forms[fm.PL | fm.ADP | size] = lemma[:-1] + final[6] + 'х'
 
+	if "animated" in w.specs:
+		w.forms[fm.PL | fm.ACC | fm.NRM] = w.forms[fm.PL | fm.GEN | fm.NRM]
+
+
 def incline_vars_get(w, lemma):
 	end = lemma[-1]
-	final = ['ы', 'е', 'а', 'у', 'ом', 'ом', 'я']
+	final = ['ы', 'е', 'а', 'у', 'ом', 'ом', 'я', 'ы', 'ов']
 	if len(lemma) > 1:
 		if lt.is_rulei(lemma[-2]):
 			final[0] = 'и'
@@ -172,6 +204,10 @@ def incline_vars_get(w, lemma):
 
 		if lt.is_hushing(lemma[-2]):
 			final[6] = 'а'
+
+		if lt.is_hushing(lemma[-1]):
+			final[7] = 'и'
+			final[8] = 'ей'
 
 		if end == 'е':
 			final[4] = 'ем'

@@ -17,7 +17,7 @@ def load(w):
 		else:
 			w.specs["decl"] = "mixed"
 
-	f = fm.SG | fm.POS | fm.NORM | fm.FULL
+	f = fm.SG | fm.POS | fm.NRM | fm.FULL
 
 	w.forms[f | fm.MAS | fm.NOM] = w.lemma
 

@@ -3,52 +3,20 @@
 #
 
 (я 126844 "I"
-	ex: (
-		(@ sg gen norm) "меня"
-		(@ sg dat norm) "мне"
-		(@ sg acc norm) "меня"
-		(@ sg ins norm) "мной"
-		(@ sg adp norm) "мне"
-		(@ pl nom norm) "мы"
-		(@ pl gen norm) "нас"
-		(@ pl dat norm) "нам"
-		(@ pl acc norm) "нас"
-		(@ pl ins norm) "нами"
-		(@ pl adp norm) "нас"
-	)
+	--animated
+	sg: (меня мне меня мной мне)
+	pl: (мы нас нам нас нами нас)
 )
 (он 117911 "he"
-	ex: (
-		(@ sg gen norm) "его"
-		(@ sg dat norm) "ему"
-		(@ sg acc norm) "его"
-		(@ sg ins norm) "им"
-		(@ sg adp norm) "нём"
-		(@ pl nom norm) "они"
-		(@ pl gen norm) "их"
-		(@ pl dat norm) "им"
-		(@ pl acc norm) "их"
-		(@ pl ins norm) "ими"
-		(@ pl adp norm) "них"
-	)
+	sg: (его ему его им нём)
+	pl: (они их им их ими них)
 )
 (это 57078 "this")
 (она 55924 "she"
-	ex: (
-		(@ sg gen norm) "её"
-		(@ sg dat norm) "ей"
-		(@ sg acc norm) "её"
-		(@ sg ins norm) "ей"
-		(@ sg adp norm) "ней"
-		(@ pl nom norm) "они"
-		(@ pl gen norm) "их"
-		(@ pl dat norm) "им"
-		(@ pl acc norm) "их"
-		(@ pl ins norm) "ими"
-		(@ pl adp norm) "них"
-	)
+	sg: (её ей её ей ней)
+	pl: (они их им их ими них)
 	er: (
-		(@ sg acc norm) "неё"
+		(@ sg acc norm) неё
 	)
 )
 (то 39644 "that")
@@ -57,7 +25,9 @@
 (ты 31712 "you (sg)")
 (все 31068 "all")
 (вы 29064 "you (pl)")
-(человек 27230 "human")
+(человек 27230 "human"
+	--animated
+)
 (время 20157 "time")
 (дело 14121 "deal")
 (жизнь 13898 "life")
@@ -70,7 +40,9 @@
 (место 9266 "place")
 (ничто 9028 "none")
 (лицо 8780 "face")
-(друг 8742 "friend")
+(друг 8742 "friend"
+	--animated
+)
 (глаз 8576 "eye")
 (вопрос 8058 "question")
 (дом 7926 ("house" "home"))
@@ -81,35 +53,37 @@
 (голова 7094 "head")
 (что-то 6676 "something"
 	--singular-only
-	ex: (
-		(@ sg gen norm) "чего-то"
-		(@ sg dat norm) "чему-то"
-		(@ sg acc norm) "что-то"
-		(@ sg ins norm) "чем-то"
-		(@ sg adp norm) "чём-то"
-	)
+	sg: (чего-то чему-то что-то чем-то чём-то)
 )
-(ребёнок 6583 "child")
+(ребёнок 6583 "child"
+	--animated
+)
 (сила 6458 ("force" "strength"))
 (конец 6347 "end")
 (вид 6201 "view")
 (система 6178 "system")
 (часть 5854 "part")
 (город 5734 "city (town)")
-(никто 5622 "no one")
+(никто 5622 "no one"
+	--animated
+)
 (отношение 5574 "relation")
-(женщина 5333 "woman")
+(женщина 5333 "woman"
+	--animated
+)
 (деньги 5124 "money"
 	er: (
-		(@ pl gen norm) "деняк"
-		(@ pl gen norm) "деняг"
-		(@ pl gen norm) "денек"
+		(@ pl gen norm) деняк
+		(@ pl gen norm) деняг
+		(@ pl gen norm) денек
 	)
 )
 (земля 4944 ("earth (soil)" "Earth (planet)"))
 (машина 4904 ("machine" "car"))
 (вода 4848 "water")
-(отец 4841 "father")
+(отец 4841 "father"
+	--animated
+)
 (проблема 4749 "problem")
 (час 4681 "hour")
 (право 4614 ("right (side)" "right (law)"))
@@ -121,7 +95,9 @@
 (власть 4356 "power (authority)")
 (закон 4334 "law")
 (война 4259 "war")
-(бог 4254 "god")
+(бог 4254 "god"
+	--animated
+)
 (голос 4245 "voice")
 (тысяча 4160 "thousand")
 (книга 4139 "book")
@@ -136,7 +112,9 @@
 (число 3935 "number")
 (компания 3927 ("company (group of people)" "compaty (firm)"))
 (народ 3856 "folk (people)")
-(жена 3768 "wife")
+(жена 3768 "wife"
+	--animated
+)
 (группа 3728 "group")
 (развитие 3726 "development")
 (процесс 3717 "process")
@@ -158,18 +136,9 @@
 (мысль 3316 "thought")
 (дорога 3301 "road")
 (мать 3301 "mother"
-	ex: (
-		(@ sg gen norm) "матери"
-		(@ sg dat norm) "матери"
-		(@ sg ins norm) "матерью"
-		(@ sg adp norm) "матери"
-		(@ pl nom norm) "матери"
-		(@ pl gen norm) "матерей"
-		(@ pl dat norm) "матерям"
-		(@ pl acc norm) "матерей"
-		(@ pl ins norm) "матерями"
-		(@ pl adp norm) "матерях"
-	)
+	--animated
+	sg: (матери матери мать матерью матери)
+	pl: (матери матерей матерям матерей матерями матерях)
 )
 (действие 3293 "action")
 (месяц 3280 ("month" "moon"))
@@ -177,7 +146,9 @@
 (язык 3249 ("language" "tongue"))
 (любовь 3239 "love")
 (взгляд 3238 "sight")
-(мама 3226 "mother")
+(мама 3226 "mother"
+	--animated
+)
 (век 3174 "century")
 (школа 3160 ("school (building)" "school (institute)" "school (teaching)"))
 (цель 3155 "goal")
@@ -185,18 +156,13 @@
 (деятельность 3135 "activity")
 (организация 3124 ("organization (formation)" "company (firm)"))
 (кто-то 3120 "someone"
-	--singular-only
-	ex: (
-		(@ sg gen norm) "кого-то"
-		(@ sg dat norm) "кому-то"
-		(@ sg acc norm) "кого-то"
-		(@ sg ins norm) "кем-то"
-		(@ sg adp norm) "ком-то"
-	)
+	--singular-only --animated
+	sg: (кого-то кому-то кого-то кем-то ком-то)
 )
 (президент 3110 "president"
+	--animated
 	er: (
-		(@ sg nom norm) "призидент"
+		(@ sg nom norm) призидент
 	)
 )
 (комната 3107 "room")
@@ -207,7 +173,7 @@
 (утро 3013 "morning")
 (помощь 3001 "help"
 	er: (
-		(@ sg nom norm) "помощ"
+		(@ sg nom norm) помощ
 	)
 )
 (ситуация 2988 "situation")
@@ -222,14 +188,16 @@
 (внимание 2860 "attention")
 (тело 2859 "body")
 (труд 2859 "labour")
-(сын 2851 "son")
+(сын 2851 "son"
+	--animated
+)
 (мера 2843 "measure")
 (смерть 2841 "death")
 (рынок 2833 "market")
 (программа 2826 "program")
 (задача 2824 "task"
 	ex: (
-		(@ sg ins norm) "задачей"
+		(@ sg ins norm) задачей
 	)
 )
 (предприятие 2816 "factory")
@@ -238,8 +206,8 @@
 (правительство 2777 "government")
 (семья 2766 "family"
 	ex: (
-		(@ pl gen norm) "семей"
-		(@ pl acc norm) "семей"
+		(@ pl gen norm) семей
+		(@ pl acc norm) семьи
 	)
 )
 (производство 2756 "production")
@@ -248,24 +216,30 @@
 (центр 2659 "center")
 (ответ 2633 "answer")
 (муж 2630 "husband"
+	--animated
 	ex: (
-		(@ sg ins norm) "мужем"
+		(@ sg ins norm) мужем
+		(@ pl acc norm) мужей
 	)
 )
-(автор 2621 "author")
+(автор 2621 "author"
+	--animated
+)
 (стена 2610 "wall")
 (интерес 2606 "interest"
 	er: (
-		(@ sg nom norm) "интересс"
+		(@ sg nom norm) интирес
+		(@ sg nom norm) интересс
 	)
 )
 (федерация 2589 "federation")
 (правило 2588 "rule")
 (управление 2565 "management")
 (мужчина 2532 "man (male)"
+	--animated
 	gender: mas
 	er: (
-		(@ sg nom norm) "мущина"
+		(@ sg nom norm) мущина
 	)
 )
 (идея 2508 "idea")
@@ -274,7 +248,7 @@
 (счёт 2454 "count")
 (сердце 2451 "heart"
 	er: (
-		(@ sg nom norm) "серце"
+		(@ sg nom norm) серце
 	)
 )
 (движение 2447 "movement")
@@ -283,7 +257,7 @@
 (неделя 2422 "week")
 (чувство 2422 "feeling"
 	er: (
-		(@ sg nom norm) "чуство"
+		(@ sg nom norm) чуство
 	)
 )
 (глава 2402 "chapter")
@@ -301,6 +275,7 @@
 (культура 2302 "culture")
 (данные 2290 "data"
 	--plural-only
+	pl: (данные данных данным данные данными данных)
 )
 (мнение 2284 "opinion")
 (документ 2268 "document")
