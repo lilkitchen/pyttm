@@ -22,3 +22,12 @@ def is_rulei(c):
 		return True
 
 	return False
+
+def is_punc(c):
+	if c == '.' or c == ',' or c == ':' or c == ';' or \
+		c == '?' or c == '!' or c == '(' or c == ')' or \
+		c == '[' or c == ']' or c == '/' or c == '\\' or \
+		c == '"' or c == '\'':
+		return True
+
+	return False

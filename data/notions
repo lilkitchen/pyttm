@@ -16,6 +16,7 @@
 ("char-")
 ("opp")
 ("madeof")
+("capable")
 
 ("I"
 	--pointer
@@ -58,7 +59,9 @@
 ("time")
 ("deal")
 ("life")
-("period")
+("period"
+	capable: ("to last" "to end")
+)
 ("year"
 	is: "period"
 )
@@ -134,10 +137,22 @@
 
 ("animal"
 	is: "living thing"
+	capable: (
+		"to eat"
+		"to move"
+		"to drink"
+		"to be hungry"
+		"to suffer"
+	)
 )
 ("mammal"
 	is: "animal"
 	has: ("meat" "mouth" "face" "eye")
+	capable: (
+		"to see"
+		"to walk"
+		"to swim"
+	)
 )
 ("cat"
 	is: "mammal"

@@ -28,7 +28,7 @@
 		(@ sg pres trd) хотит
 	)
 )
-(идти 9571 ("to walk" "to go")
+(идти 9571 ("to walk" "to go" "to last")
 	pres: (иду идёшь идёт идут)
 	past: (шёл шла шли)
 )

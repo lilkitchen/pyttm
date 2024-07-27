@@ -34,7 +34,6 @@ def load(w):
 
 	conj = w.specs["conj"]
 
-	print(w.lemma, lemma)
 	w.forms[f | fm.INF] = w.lemma
 
 	if "pf" in w.specs:

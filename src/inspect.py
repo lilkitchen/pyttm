@@ -2,8 +2,10 @@
 # inspect.py
 #
 
+import readline
 import sys
 
+import token
 import ttm
 import word
 
@@ -16,6 +18,9 @@ def main():
 	if len(sys.argv) > 1:
 		apply(sys.argv[1:])
 		return
+
+	readline.parse_and_bind('"e[A": history-search-backward')
+	readline.parse_and_bind('"e[B": history-search-forward')
 
 	print("PyTTM inspection. Type h for help or q for quit")
 
@@ -43,6 +48,8 @@ def apply(cmd):
 			print("find [literal]\t\tDisplay all words with literal")
 			print("word [word]\t\tDisplay specific word")
 			print("words\t\tDisplay all words")
+			print("tokenize [sentence]\t\tTokenizer")
+			print("parse [sentence]\t\tParser")
 			print("q/quit\t\tQuit")
 
 		elif cmd[i] == "memory":
@@ -95,6 +102,32 @@ def apply(cmd):
 			for w in word.words:
 				w.display()
 
+		elif cmd[i] == "tokenize":
+			i += 1
+			if i < len(cmd):
+				s = ''
+				for e in cmd:
+					s += ' ' + e
+
+				s = s.lstrip()
+				tokenize(s)
+
+			else:
+				while True:
+					try:
+						s = input()
+						if not s:
+							continue
+
+					except EOFError:
+						break
+
+					tokenize(s)
+
+		elif cmd[i] == "parse":
+			i += 1
+			pass
+
 		elif cmd[i] == 'q' or cmd[i] == "quit" or cmd[i] == "exit":
 			return True
 
@@ -109,6 +142,14 @@ def word_get(s):
 	for w in word.words:
 		if s == w.lemma:
 			w.display()
+
+def tokenize(s):
+	tokens = token.tokenize(s)
+	for t in tokens:
+		t.display()
+
+def parse(s):
+	pass
 
 def to_mb(num):
 	num = num / 1024 / 1024
