@@ -5,6 +5,7 @@
 import readline
 import sys
 
+import notion
 import token
 import ttm
 import word
@@ -45,6 +46,8 @@ def apply(cmd):
 		if cmd[i] == "h" or cmd[i] == "help":
 			print("h/help\t\tShow this text")
 			print("memory\t\tShow memory usage")
+			print("notion\t\tDisplay specific notion")
+			print("notions\t\tDisplay all notions")
 			print("find [literal]\t\tDisplay all words with literal")
 			print("word [word]\t\tDisplay specific word")
 			print("words\t\tDisplay all words")
@@ -54,7 +57,9 @@ def apply(cmd):
 
 		elif cmd[i] == "memory":
 			mem = {
-				"Words:": sys.getsizeof(word.words)
+				"Words:": sys.getsizeof(word.words),
+				"Forms:": sys.getsizeof(word.forms),
+				"Notions:": sys.getsizeof(notion.notions),
 			}
 			total = 0
 			for k in mem:
@@ -64,39 +69,21 @@ def apply(cmd):
 			print("-----------------")
 			print("Total:", to_mb(total))
 
+		elif cmd[i] == "notion":
+			i += 1
+			single_arg(i, cmd, notion_get)
+
+		elif cmd[i] == "notions":
+			for k in notion.notions:
+				notion.notions[k].display()
+
 		elif cmd[i] == "find":
 			i += 1
-			if i < len(cmd):
-				literal_get(cmd[i])
-
-			else:
-				while True:
-					try:
-						s = input()
-						if not s:
-							continue
-
-					except EOFError:
-						break
-
-					literal_get(s)
+			single_arg(i, cmd, literal_get)
 
 		elif cmd[i] == "word":
 			i += 1
-			if i < len(cmd):
-				word_get(cmd[i])
-
-			else:
-				while True:
-					try:
-						s = input()
-						if not s:
-							continue
-
-					except EOFError:
-						break
-
-					word_get(s)
+			single_arg(i, cmd, word_get)
 
 		elif cmd[i] == "words":
 			for w in word.words:
@@ -132,6 +119,26 @@ def apply(cmd):
 			return True
 
 		i += 1
+
+def single_arg(i, cmd, func):
+	if i < len(cmd):
+		func(cmd[i])
+
+	else:
+		while True:
+			try:
+				s = input()
+				if not s:
+					continue
+
+			except EOFError:
+				break
+
+			func(s)
+
+def notion_get(s):
+	if s in notion.notions:
+		notion.notions[s].display()
 
 def literal_get(s):
 	if s in word.forms:
