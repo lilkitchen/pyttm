@@ -6,6 +6,7 @@ import readline
 import sys
 
 import notion
+import options
 import token
 import ttm
 import word
@@ -19,6 +20,8 @@ def main():
 	if len(sys.argv) > 1:
 		apply(sys.argv[1:])
 		return
+
+	options.quiet = False
 
 	readline.parse_and_bind('"e[A": history-search-backward')
 	readline.parse_and_bind('"e[B": history-search-forward')
@@ -45,6 +48,7 @@ def apply(cmd):
 
 		if cmd[i] == "h" or cmd[i] == "help":
 			print("h/help\t\tShow this text")
+			print("talk\t\tTalk to TTM")
 			print("memory\t\tShow memory usage")
 			print("notion\t\tDisplay specific notion")
 			print("notions\t\tDisplay all notions")
@@ -54,6 +58,12 @@ def apply(cmd):
 			print("tokenize [sentence]\t\tTokenizer")
 			print("parse [sentence]\t\tParser")
 			print("q/quit\t\tQuit")
+
+		elif cmd[i] == "talk":
+			i += 1
+			options.quiet = True
+			string_arg(i, cmd, talk)
+			options.quiet = False
 
 		elif cmd[i] == "memory":
 			mem = {
@@ -91,25 +101,7 @@ def apply(cmd):
 
 		elif cmd[i] == "tokenize":
 			i += 1
-			if i < len(cmd):
-				s = ''
-				for e in cmd:
-					s += ' ' + e
-
-				s = s.lstrip()
-				tokenize(s)
-
-			else:
-				while True:
-					try:
-						s = input()
-						if not s:
-							continue
-
-					except EOFError:
-						break
-
-					tokenize(s)
+			string_arg(i, cmd, tokenize)
 
 		elif cmd[i] == "parse":
 			i += 1
@@ -120,21 +112,39 @@ def apply(cmd):
 
 		i += 1
 
+def repeat_input(func):
+	while True:
+		try:
+			s = input()
+			if not s:
+				continue
+
+		except EOFError:
+			break
+
+		func(s)
+
 def single_arg(i, cmd, func):
 	if i < len(cmd):
 		func(cmd[i])
 
 	else:
-		while True:
-			try:
-				s = input()
-				if not s:
-					continue
+		repeat_input(func)
 
-			except EOFError:
-				break
+def string_arg(i, cmd, func):
+	if i < len(cmd):
+		s = ''
+		for e in cmd:
+			s += ' ' + e
 
-			func(s)
+		s = s.lstrip()
+		func(s)
+
+	else:
+		repeat_input(func)
+
+def talk(s):
+	print('\n\t' + ttm.tell(s), end='\n\n')
 
 def notion_get(s):
 	if s in notion.notions:

@@ -13,3 +13,6 @@ def init():
 	err = notion.init()
 	if err:
 		return err
+
+def tell(s):
+	return "I don't give a flying fuck about that"

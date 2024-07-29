@@ -2,6 +2,7 @@
 # notion.py
 #
 
+import options
 import sexp
 
 notions = {}
@@ -24,7 +25,7 @@ class Notion:
 			elif isinstance(spec, bool):
 				print("\t--" + k)
 
-def init(quiet=False):
+def init():
 	sx, err = sexp.load_file("../data/notions")
 	if err:
 		return err
@@ -60,7 +61,7 @@ def init(quiet=False):
 				ls = []
 				for name in n.specs[k]:
 					if name not in notions:
-						if not quiet:
+						if not options.quiet:
 							print("Notion \"" + name + "\" not found")
 						continue
 
