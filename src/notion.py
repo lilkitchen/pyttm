@@ -8,16 +8,22 @@ import sexp
 notions = {}
 
 class Notion:
-	def __init__(self, name):
+	def __init__(self, name=None):
 		self.name = name
 		self.specs = {}
 
-	def display(self):
-		print('"' + self.name + '"')
+	def display(self, indent=0):
+		if self.name:
+			print('"' + self.name + '"')
+
+		# TODO: unnamed recursive display
+
 		for k in self.specs:
 			spec = self.specs[k]
 			if isinstance(spec, list):
-				print('\t' + k + ':', end=' ')
+				for i in range(indent):
+					print('\t', end='')
+				print(k + ':', end=' ')
 				for e in spec:
 					print('"' + e.name + '"', end=' ')
 				print("")

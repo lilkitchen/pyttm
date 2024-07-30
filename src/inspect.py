@@ -7,6 +7,7 @@ import sys
 
 import notion
 import options
+import parser
 import token
 import ttm
 import word
@@ -30,7 +31,7 @@ def main():
 
 	while True:
 		try:
-			cmd = input()
+			cmd = input("> ")
 			if not cmd:
 				continue
 
@@ -47,17 +48,17 @@ def apply(cmd):
 			return
 
 		if cmd[i] == "h" or cmd[i] == "help":
-			print("h/help\t\tShow this text")
-			print("talk\t\tTalk to TTM")
-			print("memory\t\tShow memory usage")
-			print("notion\t\tDisplay specific notion")
-			print("notions\t\tDisplay all notions")
+			print("h/help\t\t\tShow this text")
+			print("talk\t\t\tTalk to TTM")
+			print("memory\t\t\tShow memory usage")
+			print("notion\t\t\tDisplay specific notion")
+			print("notions\t\t\tDisplay all notions")
 			print("find [literal]\t\tDisplay all words with literal")
 			print("word [word]\t\tDisplay specific word")
-			print("words\t\tDisplay all words")
-			print("tokenize [sentence]\t\tTokenizer")
-			print("parse [sentence]\t\tParser")
-			print("q/quit\t\tQuit")
+			print("words\t\t\tDisplay all words")
+			print("tokenize [sentence]\tTokenizer")
+			print("parse [sentence]\tParser")
+			print("q/quit\t\t\tQuit")
 
 		elif cmd[i] == "talk":
 			i += 1
@@ -166,7 +167,10 @@ def tokenize(s):
 		t.display()
 
 def parse(s):
-	pass
+	treat = parser.parse(s)
+	for t in treat:
+		for n in t:
+			n.display()
 
 def to_mb(num):
 	num = num / 1024 / 1024
