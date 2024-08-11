@@ -1,1 +1,4 @@
 __pycache__/
+/token
+/src/aiogram
+/src/magic_filter

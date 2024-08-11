@@ -12,9 +12,10 @@ class Notion:
 		self.name = name
 		self.specs = {}
 
-	def display(self, indent=0):
+	def string(self, indent=0):
+		s = ''
 		if self.name:
-			print('"' + self.name + '"')
+			s += '"' + self.name + '"\n'
 
 		# TODO: unnamed recursive display
 
@@ -22,14 +23,22 @@ class Notion:
 			spec = self.specs[k]
 			if isinstance(spec, list):
 				for i in range(indent):
-					print('\t', end='')
-				print(k + ':', end=' ')
+					s += '\t'
+				s += k + ': '
 				for e in spec:
-					print('"' + e.name + '"', end=' ')
-				print("")
+					s += '"' + e.name + '" '
+				s += '\n'
 
 			elif isinstance(spec, bool):
-				print("\t--" + k)
+				s += "\t--" + k
+
+			elif isinstance(spec, str):
+				s += k + ': ' + '"' + spec + '"' + '\n'
+
+		return s
+
+	def display(self, indent=0):
+		print(self.string(indent=indent))
 
 def init():
 	sx, err = sexp.load_file("../data/notions")

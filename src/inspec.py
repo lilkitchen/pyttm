@@ -1,5 +1,5 @@
 #
-# inspect.py
+# insp.py
 #
 
 import readline
@@ -8,7 +8,7 @@ import sys
 import notion
 import options
 import parser
-import token
+import tok
 import ttm
 import word
 
@@ -94,7 +94,7 @@ def apply(cmd):
 
 		elif cmd[i] == "word":
 			i += 1
-			single_arg(i, cmd, word_get)
+			single_arg(i, cmd, word_display)
 
 		elif cmd[i] == "words":
 			for w in word.words:
@@ -156,19 +156,19 @@ def literal_get(s):
 		for w in word.forms[s]:
 			w.display()
 
-def word_get(s):
-	for w in word.words:
-		if s == w.lemma:
-			w.display()
+def word_display(s):
+	w = word.find(s)
+	if w:
+		w.display()
 
 def tokenize(s):
-	tokens = token.tokenize(s)
+	tokens = tok.tokenize(s)
 	for t in tokens:
 		t.display()
 
 def parse(s):
-	treat = parser.parse(s)
-	for t in treat:
+	treats = parser.parse(s)
+	for t in treats:
 		for n in t:
 			n.display()
 

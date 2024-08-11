@@ -46,16 +46,25 @@ class Word:
 		self.errs = {}
 		self.notions = []
 
-	def display(self):
-		print(TYPE_LABELS[self.type] + ": " + self.lemma)
+	def string(self):
+		s = ''
+		s += TYPE_LABELS[self.type] + ": " + self.lemma + '\n'
 
 		for k in self.specs:
-			print('\t', k, ": ", self.specs[k], sep='')
+			spec = self.specs[k]
+			if isinstance(spec, bool):
+				spec = str(spec)
+			s += '\t' + k + ": " + spec + '\n'
 
 		for k in self.forms:
-			print('\t', end='')
-			form.display(k, e=' ')
-			print(self.forms[k])
+			s += '\t'
+			s += form.string(k, e=' ')
+			s += self.forms[k] + '\n'
+
+		return s
+
+	def display(self):
+		print(self.string())
 
 def init():
 	err = load_words("../data/ru/nouns", noun.load, NOUN)
@@ -156,3 +165,8 @@ def apply_forms(w, name, dt, msg):
 			dt[f] = spec[i + 1]
 
 		del w.specs[name]
+
+def find(s):
+	for w in words:
+		if s == w.lemma:
+			return w

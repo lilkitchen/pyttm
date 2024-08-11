@@ -3,6 +3,7 @@
 #
 
 import notion
+import parser
 import word
 
 def init():
@@ -15,4 +16,6 @@ def init():
 		return err
 
 def tell(s):
+	t = parser.parse(s)
+
 	return "I don't give a flying fuck about that"

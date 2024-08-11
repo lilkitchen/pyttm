@@ -8,5 +8,5 @@ Usage
 
 Run this command in the src directory:
 ```
-python inspect.py
+python inspec.py
 ```

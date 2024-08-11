@@ -147,14 +147,18 @@ def read(sx):
 
 	return form
 
-def display(form, e='\n'):
+def string(form, e='\n'):
+	s = '(@'
 	printed = 0
-
-	print('(@ ', end='')
 
 	for k in LABELS:
 		if form & LABELS[k] and not printed & LABELS[k]:
-			print(k, end=' ')
+			s += ' ' + k
 			printed |= LABELS[k]
 
-	print(')', end=e)
+	s += ')' + e
+
+	return s
+
+def display(form, e='\n'):
+	print(string(form, e))
